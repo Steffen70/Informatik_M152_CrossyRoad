@@ -1,0 +1,90 @@
+#playground {
+    background-color: #75a2c0;
+    width: var(--playground-width);
+    height: var(--playground-height);
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: "Start Traffic-Box Finish";
+}
+
+#playground #start {
+    position: relative;
+    grid-area: Start;
+}
+
+#playground #finish {
+    background-color: #1d65a6;
+    grid-area: Finish;
+    display: flex;
+    justify-content: space-around;
+    padding-top: .5em;
+}
+
+#playground #finish * {
+    color: #75a2c0;
+}
+
+#playground #message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 3;
+    display: none;
+}
+
+#playground.gameover #message{
+    display: initial;
+}
+
+#playground #message *{
+    color: white;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+}
+
+#playground #message #reload-button{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#traffic-box {
+    display: flex;
+    justify-content: space-between;
+    grid-area: Traffic-Box;
+    overflow: hidden;
+}
+
+@keyframes drive {
+    from {
+        transform: translateY(calc(-1 * (var(--car-height) + 1px)));
+    }
+    to {
+        transform: translateY(calc(100% + (var(--car-height) + 1px) * 3));
+    }
+}
+
+.car, .frog {
+    background-color: #192e5b;
+}
+
+.car {
+    animation: drive linear alternate infinite;
+    width: var(--car-width);
+    height: var(--car-height);
+}
+
+.gameover .car {
+    animation-play-state: paused;
+}
+
+.frog {
+    position: absolute;
+    width: var(--frog-size);
+    height: var(--frog-size);
+    top: calc(50% - var(--frog-size) / 2);
+    left: calc(50% - var(--frog-size) / 2);
+}
