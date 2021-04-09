@@ -41,3 +41,9 @@ p {
 a {
     text-decoration: none;
 }
+
+.center {
+    position: absolute;
+    top: 50vh;
+    transform: translateY(-50%);
+}
